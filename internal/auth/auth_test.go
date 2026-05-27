@@ -43,8 +43,8 @@ func TestCheckPasswordHash(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			_, err := CheckPasswordHash(tt.password, tt.hash)
-			if (err != nil) != tt.wantErr {
+			match, err := CheckPasswordHash(tt.password, tt.hash)
+			if (err != nil) || match != tt.wantErr {
 				t.Errorf("CheckPasswordHash() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})
